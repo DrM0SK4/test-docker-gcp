@@ -7,7 +7,7 @@ import functions_framework
 @functions_framework.http
 def listen(request):
     # Assuming functionB is exposed as an HTTP trigger
-    response = requests.get("http://localhost:8080/functionB")
+    response = requests.get("http://localhost:8080", timeout=10)
     result_from_B = response.json()["result_from_B"]
 
     return jsonify(

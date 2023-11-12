@@ -33,35 +33,6 @@
             "env": {},
             "envFile": "${workspaceFolder}/.env"
         },
-        {
-            "name": "Python: Remote Attach",
-            "type": "python",
-            "request": "attach",
-            "port": 5678,
-            "host": "localhost",
-            "pathMappings": [
-                {
-                    "localRoot": "${workspaceFolder}",
-                    "remoteRoot": "/app"
-                }
-            ],
-            "preLaunchTask": "docker-compose-up"
-        },
-        {
-            "name": "Docker: Python - Flask",
-            "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "python": {
-                "pathMappings": [
-                    {
-                        "localRoot": "${workspaceFolder}",
-                        "remoteRoot": "/app"
-                    }
-                ],
-                "projectType": "flask"
-            }
-        }
     ],
     "compounds": [
         {
@@ -70,7 +41,7 @@
                 "Functions Framework: Launch function A",
                 "Functions Framework: Launch function B"
             ],
-            "preLaunchTask": "${defaultBuildTask}",
+            "preLaunchTask": "docker-compose",
             "stopAll": true
         }
     ]
