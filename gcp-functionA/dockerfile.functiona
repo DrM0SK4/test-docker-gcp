@@ -1,0 +1,15 @@
+# Dockerfile for functionA
+FROM python:3.8
+
+COPY gcp_functiona /app/
+RUN pip install Flask requests functions-framework
+
+# Enable unbuffered mode for Python (better for debugging)
+ENV PYTHONUNBUFFERED 1
+
+# Expose the default Flask port
+EXPOSE 8081
+
+CMD ["functions-framework","--source=app/main.py", "--target=listen", "--debug", "--port=8081"]
+
+

@@ -8,19 +8,14 @@
             "program": "${workspaceFolder}/.venv/bin/functions-framework",
             "args": [
                 "--source=gcp-functionA/gcp_functiona/main.py",
-                "--target=listen", // Replace with your target function name
+                "--target=listen",
                 "--port=8081",
                 "--debug"
             ],
             "cwd": "${workspaceFolder}",
             "stopOnEntry": false,
-            // "python": "${workspaceFolder}/.venv/bin/python",  // Path to your virtual environment's Python interpreter
             "env": {},
-            "envFile": "${workspaceFolder}/.env", // Optional: Path to your environment variable file
-            // "debugOptions": [
-            //     "RedirectOutput"
-            // ],
-            // "preLaunchTask": "python: pip install functions-framework" // Optional: Task to install the Functions Framework
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "name": "Functions Framework: Launch function B",
@@ -29,19 +24,54 @@
             "program": "${workspaceFolder}/.venv/bin/functions-framework",
             "args": [
                 "--source=gcp-functionB/gcp_functionb/main.py",
-                "--target=listen", // Replace with your target function name
+                "--target=listen",
                 "--port=8080",
                 "--debug"
             ],
             "cwd": "${workspaceFolder}",
             "stopOnEntry": false,
-            // "python": "${workspaceFolder}/venv/bin/python",  // Path to your virtual environment's Python interpreter
             "env": {},
-            "envFile": "${workspaceFolder}/.env", // Optional: Path to your environment variable file
-            // "debugOptions": [
-            //     "RedirectOutput"
-            // ],
-            // "preLaunchTask": "python: pip install functions-framework" // Optional: Task to install the Functions Framework
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "name": "Python: Remote Attach",
+            "type": "python",
+            "request": "attach",
+            "port": 5678,
+            "host": "localhost",
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "/app"
+                }
+            ],
+            "preLaunchTask": "docker-compose-up"
+        },
+        {
+            "name": "Docker: Python - Flask",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "python": {
+                "pathMappings": [
+                    {
+                        "localRoot": "${workspaceFolder}",
+                        "remoteRoot": "/app"
+                    }
+                ],
+                "projectType": "flask"
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Server/Client",
+            "configurations": [
+                "Functions Framework: Launch function A",
+                "Functions Framework: Launch function B"
+            ],
+            "preLaunchTask": "${defaultBuildTask}",
+            "stopAll": true
         }
     ]
 }
