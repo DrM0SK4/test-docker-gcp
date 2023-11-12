@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "test-docker-gcp"
+version = "0.1.0"
+description = "Project to showcase possibilities to link mulitple gcp cloud functions with docker."
+authors = ["Enrico <moscaen@gmail.com>"]
+readme = "README.md"
+packages = [{include = "test_docker_gcp"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+functions-framework = "^3.4.0"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.0.2"
+black = "^23.11.0"
+pylama = "^8.4.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

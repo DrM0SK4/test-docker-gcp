@@ -1,0 +1,47 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Functions Framework: Launch function A",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/functions-framework",
+            "args": [
+                "--source=gcp-functionA/gcp_functiona/main.py",
+                "--target=listen", // Replace with your target function name
+                "--port=8081",
+                "--debug"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopOnEntry": false,
+            // "python": "${workspaceFolder}/.venv/bin/python",  // Path to your virtual environment's Python interpreter
+            "env": {},
+            "envFile": "${workspaceFolder}/.env", // Optional: Path to your environment variable file
+            // "debugOptions": [
+            //     "RedirectOutput"
+            // ],
+            // "preLaunchTask": "python: pip install functions-framework" // Optional: Task to install the Functions Framework
+        },
+        {
+            "name": "Functions Framework: Launch function B",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/functions-framework",
+            "args": [
+                "--source=gcp-functionB/gcp_functionb/main.py",
+                "--target=listen", // Replace with your target function name
+                "--port=8080",
+                "--debug"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopOnEntry": false,
+            // "python": "${workspaceFolder}/venv/bin/python",  // Path to your virtual environment's Python interpreter
+            "env": {},
+            "envFile": "${workspaceFolder}/.env", // Optional: Path to your environment variable file
+            // "debugOptions": [
+            //     "RedirectOutput"
+            // ],
+            // "preLaunchTask": "python: pip install functions-framework" // Optional: Task to install the Functions Framework
+        }
+    ]
+}

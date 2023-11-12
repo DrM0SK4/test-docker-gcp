@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "gcp-functionb"
+version = "0.1.0"
+description = ""
+authors = ["Enrico <moscaen@gmail.com>"]
+readme = "README.md"
+packages = [{include = "gcp_functionb"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
