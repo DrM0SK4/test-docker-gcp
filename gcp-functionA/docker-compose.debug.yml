@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  gcpfunctiona:
+    image: gcpfunctiona
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command:
+      # [
+      #   "sh",
+      #   "-c",
+      #   "pip install debugpy -t /tmp && python -m debugpy --wait-for-client --listen 0.0.0.0:5678 /app/gcp_functiona/main.py && functions-framework --target listen --port 8000 --source /app/gcp_functiona/main.py --debug"
+      # ]
+
+      # [
+      #   "sh",
+      #   "-c",
+      #   "pip install debugpy functions-framework -t /tmp && PYTHONPATH=/tmp:$PYTHONPATH python -m debugpy --wait-for-client --listen 0.0.0.0:5678 -m functions_framework --target listen --signature-type http --port 8000 --source /app/gcp_functiona/main.py --debug"
+      # ]
+      [
+        "sh",
+        "-c",
+        "pip install debugpy functions-framework -t /tmp && PYTHONPATH=/tmp:$PYTHONPATH python -m functions_framework --target listen --signature-type http --port 8000 --source /app/gcp_functiona/main.py --debug"
+      ]
+
+    ports:
+      - 5678:5678
+      - 8000:8000
